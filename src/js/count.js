@@ -1,0 +1,1 @@
+export const count = (a, b) => a + b;
