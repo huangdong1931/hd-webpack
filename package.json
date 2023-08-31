@@ -25,11 +25,14 @@
     "express": "^4.18.2",
     "html-webpack-plugin": "^5.5.3",
     "mini-css-extract-plugin": "^2.7.6",
+    "opn": "^6.0.0",
     "ora": "^5.0.0",
     "semver": "^7.5.4",
     "shelljs": "^0.8.5",
     "webpack": "^5.88.2",
     "webpack-cli": "^5.1.4",
+    "webpack-dev-middleware": "^6.1.1",
+    "webpack-hot-middleware": "^2.25.4",
     "webpack-merge": "^5.9.0"
   },
   "engines": {
