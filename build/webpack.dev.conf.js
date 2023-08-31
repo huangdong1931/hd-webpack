@@ -1,3 +1,7 @@
+/**
+ * 开发环境配置
+ */
+
 const path = require("path");
 const { merge } = require('webpack-merge');
 

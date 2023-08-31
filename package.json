@@ -9,8 +9,8 @@
     "build:dev": "npm run build-dev-env node build/build.js",
     "build:sit": "npm run build-sit-env node build/build.js",
     "build:uat": "npm run build-uat-env node build/build.js",
-    "build-dev-env": "cross-env NODE_ENV=development BASE_API=/api",
-    "build-sit-env": "cross-env NODE_ENV=development BASE_API=/api",
+    "build-dev-env": "cross-env NODE_ENV=production BASE_API=/api",
+    "build-sit-env": "cross-env NODE_ENV=production BASE_API=/api",
     "build-uat-env": "cross-env NODE_ENV=production BASE_API=/api",
     "test": "echo \"Error: no test specified\" && exit 1"
   },

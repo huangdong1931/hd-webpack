@@ -1,3 +1,7 @@
+/**
+ *  DLL 优化配置
+ */
+
 module.exports = {
   entry: {
     vendor: ['react', 'react-dom'],

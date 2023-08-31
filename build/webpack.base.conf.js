@@ -1,3 +1,8 @@
+/**
+ * 公共基础配置
+ * vue、html、css、js、图片资源等资源抽离、压缩、合并
+ */
+
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");

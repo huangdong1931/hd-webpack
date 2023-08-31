@@ -1,5 +1,9 @@
+/**
+ * 生产环境配置
+ */
+
 const { merge } = require('webpack-merge');
-const OptimizeCSSAssetsPlugin = require("optimize-css-assets-webpack-plugin");
+// const OptimizeCSSAssetsPlugin = require("optimize-css-assets-webpack-plugin");
 
 const path = require("path");
 const COMMON = require('./webpack.base.conf');
@@ -22,14 +26,14 @@ module.exports = merge(COMMON, {
 	},
 	// 插件
 	plugins: [
-		new OptimizeCSSAssetsPlugin({
-			assetNameRegExp: /\.optimize\.css$/g,
-			cssProcessor: require('cssnano'),
-			cssProcessorPluginOptions: {
-				preset: ['default', { discardComments: { removeAll: true } }],
-			},
-			canPrint: true
-		})
+		// new OptimizeCSSAssetsPlugin({
+		// 	assetNameRegExp: /\.optimize\.css$/g,
+		// 	cssProcessor: require('cssnano'),
+		// 	cssProcessorPluginOptions: {
+		// 		preset: ['default', { discardComments: { removeAll: true } }],
+		// 	},
+		// 	canPrint: true
+		// })
 	],
 	// 模式
 	mode: "production"

@@ -1,7 +1,8 @@
 
 /**
- * 版本检测
- * npm 包 semver 提供终端动画输出
+ * 版本检测脚本
+ * @semver 版本范围的解析、计算、比较
+ * @shelljs Unix shell 命令执行
  */
 
 const chalk = require('chalk');
@@ -32,6 +33,7 @@ class Version {
       npm: packageConfig.engines.npm
     }
   }
+  // 比较 npm、node 版本不符合添加错误警告
   collectWarning() {
     let cur = this.getLocalVersion();
     let ask = this.getVersionAsk();
@@ -53,12 +55,12 @@ class Version {
     return semver.satisfies(cur.node, ask.node) && semver.satisfies(cur.npm, ask.npm);
   }
 }
+
 module.exports = function () {
   const v = new Version();
   const pass = v.compareVersion();
-  let warning = v.collectWarning();
-  // 如果不符合要求退出打包 给出提示
   if (!pass) {
+    let warning = v.collectWarning();
     console.log();
     console.log(chalk.red('Error:'))
     while (warning.length) {
