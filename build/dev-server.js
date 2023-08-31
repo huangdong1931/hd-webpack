@@ -2,8 +2,7 @@
  * 启动本地服务
  */
 
-const { hasProxyFile } = require('./create-proxy');
-hasProxyFile();
+require('./create-proxy');
 require('./check-versions')();
 
 const PORT = process.env.PORT || process.argv[2] || 3000;

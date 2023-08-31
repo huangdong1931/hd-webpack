@@ -11,8 +11,7 @@ const semver = require('semver');
 const shell = require('shelljs');
 const { execSync } = require('child_process');
 
-class Version {
-  // 获取本地环境 npm 、node 版本号
+const version = new class {
   getLocalVersion() {
     let info = Object.create(null);
     info.node = semver.clean(process.version);
@@ -26,14 +25,12 @@ class Version {
     }
     return info;
   }
-  // 获取package中 npm 、node 版本要求
   getVersionAsk() {
     return {
       node: packageConfig.engines.node,
       npm: packageConfig.engines.npm
     }
   }
-  // 比较 npm、node 版本不符合添加错误警告
   collectWarning() {
     let cur = this.getLocalVersion();
     let ask = this.getVersionAsk();
@@ -48,19 +45,17 @@ class Version {
     }
     return warning;
   }
-  // 比较版本是否符合要求
   compareVersion() {
     let cur = this.getLocalVersion();
     let ask = this.getVersionAsk();
     return semver.satisfies(cur.node, ask.node) && semver.satisfies(cur.npm, ask.npm);
   }
-}
+}()
 
 module.exports = function () {
-  const v = new Version();
-  const pass = v.compareVersion();
+  const pass = version.compareVersion();
   if (!pass) {
-    let warning = v.collectWarning();
+    let warning = version.collectWarning();
     console.log();
     console.log(chalk.red('Error:'))
     while (warning.length) {

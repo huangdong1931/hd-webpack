@@ -7,16 +7,15 @@
 const fs = require('fs');
 const path = require('path');
 
-const FILE_NAME = 'proxy.js';
-const proxyConfig = `module.exports = { "/api": "http://127.0.0.1/" }`;
-const abPath = (filename) => {
-  return path.resolve(__dirname, './', filename);
-};
+const createProxy = new class {
+  FILE_NAME = 'proxy.js';
+  PROXY_CONFIG = `module.exports = { "/api": "http://127.0.0.1/" }`;
+  abPath(filename) {
+    return path.resolve(__dirname, './', filename);
+  }
+  hasProxyFile() {
+    fs.existsSync(this.abPath(this.FILE_NAME)) || fs.writeFileSync(this.abPath(this.FILE_NAME), THIS.PROXY_CONFIG);
+  }
+}();
 
-const hasProxyFile = () => {
-  fs.existsSync(abPath(FILE_NAME)) || fs.writeFileSync(abPath(FILE_NAME), proxyConfig);
-};
-
-module.exports = {
-  hasProxyFile
-};
+module.exports = createProxy.hasProxyFile();
