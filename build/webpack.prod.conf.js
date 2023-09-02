@@ -1,16 +1,21 @@
 /**
  * 生产环境配置
+ * @CleanWebpackPlugin 打包前移除之前的包内容
+ * @HtmlWebpackPlugin 自动生成HTML并引入打包的js文件
+ * @MiniCssExtractPlugin 将css代码从js中提取出来
+ * @CssMinimizerPlugin 压缩、去除重复css代码
+ * @TerserWebpackPlugin 压缩、混淆js代码<原生webpack5压缩 与 CssMinimizerPlugin 冲突>
  */
 
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const CssMinimizerPlugin = require("css-minimizer-webpack-plugin");
+const TerserWebpackPlugin = require("terser-webpack-plugin");
 
 const { resolve } = require("path");
 const COMMON = require('./webpack.base.conf');
 const { merge } = require('webpack-merge');
-
 
 module.exports = merge(COMMON, {
 	entry: "./src/main.js",
@@ -21,6 +26,11 @@ module.exports = merge(COMMON, {
 	optimization: {
     minimizer: [
       new CssMinimizerPlugin(),
+			new TerserWebpackPlugin({
+				terserOptions: {
+					mangle: true,
+				}
+			})
     ],
   },
 	plugins: [

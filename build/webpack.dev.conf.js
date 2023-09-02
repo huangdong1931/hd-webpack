@@ -33,6 +33,6 @@ module.exports = merge(COMMON, {
 			chunksSortMode: 'auto'
 		})
 	],
+	mode: "development",
 	devtool: 'source-map',
-	mode: "development"
 })

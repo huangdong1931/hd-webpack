@@ -3,6 +3,7 @@
  */
 
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+const PublishWebpackPlugin = require('./publish-webpack-plugin');
 
 module.exports = {
 	module: {
@@ -15,5 +16,10 @@ module.exports = {
 			}
 		],
 	},
-	plugins: []
+	plugins: [
+		new PublishWebpackPlugin({
+			replaceFlag: 'id="app"',
+			htmlOutputPath: '../dist/index.html'
+		})
+	]
 }

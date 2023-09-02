@@ -15,17 +15,18 @@ const buildByEnv = function () {
 }
 const WEBPACK_CONFIG = buildByEnv();
 const spinner = ora(chalk.green(`building ${WEBPACK_CONFIG.mode} ...`));
+const startTime = Date.now();
 spinner.start();
 
 webpack(WEBPACK_CONFIG, function (err, stats) {
   spinner.stop();
   if (err) throw err;
   if (stats.hasErrors()) {
-    console.log(stats);
+    // console.log(stats);
     console.log(chalk.red('> Build failed with errors !'));
     process.exit(1);
   }
-
-  console.log(chalk.cyan(`\n\n> Build ${WEBPACK_CONFIG.mode} complete.`));
+  const endTime = Date.now();
+  console.log(chalk.cyan(`\n\n> Build ${WEBPACK_CONFIG.mode} complete in ${endTime - startTime}ms`));
 })
 
