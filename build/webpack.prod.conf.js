@@ -17,7 +17,6 @@ const { resolve } = require("path");
 const COMMON = require('./webpack.base.conf');
 const { merge } = require('webpack-merge');
 
-
 module.exports = merge(COMMON, {
 	entry: "./src/main.js",
 	output: {
