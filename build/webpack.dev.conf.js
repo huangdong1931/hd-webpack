@@ -2,12 +2,13 @@
  * 开发环境配置
  */
 
-const path = require("path");
+const HotModuleReplacementPlugin = require('webpack/lib/HotModuleReplacementPlugin');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
+
+const { resolve } = require("path");
 const { merge } = require('webpack-merge');
 
 const COMMON = require('./webpack.base.conf');
-
-const HotModuleReplacementPlugin = require('webpack/lib/HotModuleReplacementPlugin');
 
 module.exports = merge(COMMON, {
 	entry: [
@@ -15,7 +16,7 @@ module.exports = merge(COMMON, {
     './src/main.js'
   ],
 	output: {
-		path: path.resolve(__dirname, "../dist"),
+		path: resolve(__dirname, "../dist"),
 		filename: "bundle.js"
 	},
 	module: {
@@ -23,6 +24,12 @@ module.exports = merge(COMMON, {
 	},
 	plugins: [
     new HotModuleReplacementPlugin(),
+		new HtmlWebpackPlugin({
+			template: resolve(__dirname, '../index.html'),
+			inject: true,
+			minify: false,
+			chunksSortMode: 'auto'
+		})
 	],
 	devtool: 'source-map',
 	mode: "development"

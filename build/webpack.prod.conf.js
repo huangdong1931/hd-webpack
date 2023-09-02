@@ -2,25 +2,31 @@
  * 生产环境配置
  */
 
-const path = require("path");
+const HtmlWebpackPlugin = require('html-webpack-plugin');
+const miniCssExtractPlugin = require('mini-css-extract-plugin');
+
+const { resolve } = require("path");
 const COMMON = require('./webpack.base.conf');
 const { merge } = require('webpack-merge');
 
-// const 
-
-const ENTRY = "./src/main.js";
-const OUTPUT = path.resolve(__dirname, "../dist");
-const FILENAME = `static/js/bundle.js`;
 
 module.exports = merge(COMMON, {
-	entry: ENTRY,
+	entry: "./src/main.js",
 	output: {
-		path: OUTPUT,
-		filename: FILENAME
+		path: resolve(__dirname, "../dist"),
+		filename: 'static/js/bundle.js'
 	},
 	module: {
 		rules: []
 	},
-	plugins: [],
+	plugins: [
+		new HtmlWebpackPlugin({
+			template: resolve(__dirname, '../index.html'),
+			inject: true,
+			minify: true,
+			chunksSortMode: 'auto'
+		}),
+		new miniCssExtractPlugin()
+	],
 	mode: "production"
 })

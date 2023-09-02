@@ -1,4 +1,5 @@
-// import '../pubilc/assets/css/common.css';
+import './assets/css/common.css';
+import './assets/css/index.css';
 
 const add = (a, b) => a + b;
 console.log(add);
