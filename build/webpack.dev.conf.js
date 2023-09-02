@@ -2,6 +2,7 @@
  * 开发环境配置
  */
 
+const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const HotModuleReplacementPlugin = require('webpack/lib/HotModuleReplacementPlugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 
@@ -23,6 +24,7 @@ module.exports = merge(COMMON, {
 		rules: []
 	},
 	plugins: [
+		new CleanWebpackPlugin(),
     new HotModuleReplacementPlugin(),
 		new HtmlWebpackPlugin({
 			template: resolve(__dirname, '../index.html'),

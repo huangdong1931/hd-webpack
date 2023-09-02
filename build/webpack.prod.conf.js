@@ -2,8 +2,10 @@
  * 生产环境配置
  */
 
+const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
-const miniCssExtractPlugin = require('mini-css-extract-plugin');
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+const CssMinimizerPlugin = require("css-minimizer-webpack-plugin");
 
 const { resolve } = require("path");
 const COMMON = require('./webpack.base.conf');
@@ -16,17 +18,22 @@ module.exports = merge(COMMON, {
 		path: resolve(__dirname, "../dist"),
 		filename: 'static/js/bundle.js'
 	},
-	module: {
-		rules: []
-	},
+	optimization: {
+    minimizer: [
+      new CssMinimizerPlugin(),
+    ],
+  },
 	plugins: [
+		new CleanWebpackPlugin(),
 		new HtmlWebpackPlugin({
 			template: resolve(__dirname, '../index.html'),
 			inject: true,
-			minify: true,
+			minify: false,
 			chunksSortMode: 'auto'
 		}),
-		new miniCssExtractPlugin()
+		new MiniCssExtractPlugin({
+			filename: 'static/css/[name].[hash].css'
+		})
 	],
 	mode: "production"
 })
