@@ -1,6 +1,7 @@
 /**
  * 生产环境配置
  * @CleanWebpackPlugin 打包前移除之前的包内容
+ * @PublishWebpackPlugin 为生成的dist包添加打包信息
  * @HtmlWebpackPlugin 自动生成HTML并引入打包的js文件
  * @MiniCssExtractPlugin 将css代码从js中提取出来
  * @CssMinimizerPlugin 压缩、去除重复css代码
@@ -8,6 +9,7 @@
  */
 
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
+const PublishWebpackPlugin = require('./plugins/publish-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const CssMinimizerPlugin = require("css-minimizer-webpack-plugin");
@@ -43,6 +45,10 @@ module.exports = merge(COMMON, {
 		}),
 		new MiniCssExtractPlugin({
 			filename: 'static/css/[name].[hash].css'
+		}),
+		new PublishWebpackPlugin({
+			replaceFlag: 'id="app"',
+			htmlOutputPath: resolve(__dirname, '../dist/index.html')
 		})
 	],
 	mode: "production"

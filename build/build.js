@@ -22,7 +22,6 @@ webpack(WEBPACK_CONFIG, function (err, stats) {
   spinner.stop();
   if (err) throw err;
   if (stats.hasErrors()) {
-    // console.log(stats);
     console.log(chalk.red('> Build failed with errors !'));
     process.exit(1);
   }

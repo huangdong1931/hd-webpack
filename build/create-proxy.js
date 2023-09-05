@@ -14,7 +14,7 @@ const createProxy = new class {
     return path.resolve(__dirname, './', filename);
   }
   hasProxyFile() {
-    fs.existsSync(this.abPath(this.FILE_NAME)) || fs.writeFileSync(this.abPath(this.FILE_NAME), THIS.PROXY_CONFIG);
+    fs.existsSync(this.abPath(this.FILE_NAME)) || fs.writeFileSync(this.abPath(this.FILE_NAME), this.PROXY_CONFIG);
   }
 }();
 

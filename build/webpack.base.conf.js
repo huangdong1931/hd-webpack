@@ -3,9 +3,9 @@
  */
 
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
-const PublishWebpackPlugin = require('./publish-webpack-plugin');
 
 module.exports = {
+	
 	module: {
 		rules: [
 			{
@@ -15,11 +15,5 @@ module.exports = {
 					'css-loader']
 			}
 		],
-	},
-	plugins: [
-		new PublishWebpackPlugin({
-			replaceFlag: 'id="app"',
-			htmlOutputPath: '../dist/index.html'
-		})
-	]
+	}
 }
