@@ -47,8 +47,7 @@ module.exports = merge(COMMON, {
 			filename: 'static/css/[name].[hash].css'
 		}),
 		new PublishWebpackPlugin({
-			replaceFlag: 'id="app"',
-			htmlOutputPath: resolve(__dirname, '../dist/index.html')
+			outPath: resolve(__dirname, '../dist/index.html')
 		})
 	],
 	mode: "production"

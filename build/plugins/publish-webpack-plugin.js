@@ -21,10 +21,10 @@ const getCurrentBranch = () => {
 const getCurrentTime = () => {
   return moment().format('YYYY-MM-DD HH:mm:ss');
 }
-const setPublishInfo = ({ replaceFlag, htmlOutputPath }) => {
-  const htmlStr = readFileSync(resolve(__dirname, htmlOutputPath), 'utf-8');
-  const replaceContent = `id="app" data-publish-time="${getCurrentTime()}" data-publish-branch="${getCurrentBranch()}"`;
-  writeFileSync(resolve(__dirname, htmlOutputPath), htmlStr.replace(replaceFlag, replaceContent));
+const setPublishInfo = ({ outPath }) => {
+  let htmlStr = readFileSync(resolve(__dirname, outPath), 'utf-8');
+  let el = `<meta data-publish-time="${getCurrentTime()}" data-publish-branch="${getCurrentBranch()}"><title>`
+  writeFileSync(resolve(__dirname, outPath), htmlStr.replace('<title>', el));
 }
 const plugin = 'publish-webpack-plugin';
 
